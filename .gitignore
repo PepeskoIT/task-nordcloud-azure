@@ -1,0 +1,4 @@
+**/.terraform*
+# **/*-variables.tfvars # for presentation purpose
+**/*.old
+**/.~lock*
