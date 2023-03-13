@@ -19,5 +19,6 @@ resource "azurerm_container_registry" "blog" {
     app_name = var.app_name
     region = "A"
   }
-  #TODO: add firewall rules and add encryption
+  # TODO: add firewall rules, encryption access policy. 
+  # Push ghost image for web app to use.
 }

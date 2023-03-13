@@ -2,3 +2,4 @@
 # **/*-variables.tfvars # for presentation purpose
 **/*.old
 **/.~lock*
+**/local.envs.sh

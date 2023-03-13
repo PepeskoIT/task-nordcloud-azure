@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e 
 
-RESOURCE_LOCATION="germanywestcentral"
+RESOURCE_LOCATION="northeurope"
 TF_STATE_RESOURCE_GROUP_NAME=$TF_VAR_tfstate_resource_group_name
 TF_STATE_STORAGE_ACCOUNT_NAME=$TF_VAR_tfstate_storage_account_name
 TF_STATE_CONTAINER_NAME=$TF_VAR_tfstate_container_name

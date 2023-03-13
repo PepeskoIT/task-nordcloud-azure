@@ -1,4 +1,4 @@
-resource "azurerm_key_vault" "storage" {
+resource "azurerm_key_vault" "blog" {
   name                = "kv-${var.app_name}-${var.environment}"
   location                    = azurerm_resource_group.blog.location
   resource_group_name         = azurerm_resource_group.blog.name
@@ -25,7 +25,8 @@ resource "azurerm_key_vault" "storage" {
       "Get",
     ]
   }
-  # TODO: firewall/route rules
+  # TODO: firewall/route/access rules for web app and pipelines usage.
+  # Enable logging.
   tags = {
     environment = var.environment
     app_name = var.app_name

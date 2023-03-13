@@ -8,6 +8,7 @@ resource "random_string" "web_app_suffix" {
   upper   = false
 }
 
+# TODO: create region B (standby) and attach it to LB with failover rule
 resource "azurerm_service_plan" "blog" {
   name                = "asp-${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.blog.location
@@ -65,12 +66,15 @@ resource "azurerm_linux_web_app" "blog" {
       "database__connection__password"     = var.mysql_admin_password
       "database__connection__ssl__ca"     = trimspace(file("DigiCertGlobalRootCA.crt.pem"))
   }
+  depends_on = [
+    azurerm_mysql_flexible_database.blog, azurerm_container_registry.blog,
+    azurerm_key_vault.blog
+  ] 
   
   tags = {
     environment = var.environment
     app_name = var.app_name
   }
-  depends_on = [azurerm_mysql_flexible_database.blog]
 }
 
 resource "azurerm_linux_web_app_slot" "blog" {
@@ -112,12 +116,13 @@ resource "azurerm_linux_web_app_slot" "blog" {
     "database__connection__password"     = var.mysql_admin_password
     "database__connection__ssl__ca"     = trimspace(file("DigiCertGlobalRootCA.crt.pem"))
   }
-
+  depends_on = [azurerm_mysql_flexible_database.blog]
+  
   tags = {
     environment = var.environment
     app_name = var.app_name
   }
-  depends_on = [azurerm_mysql_flexible_database.blog]
+
 }
 ### scaling
 resource "azurerm_monitor_autoscale_setting" "blog" {
@@ -134,7 +139,7 @@ resource "azurerm_monitor_autoscale_setting" "blog" {
       minimum = 1
       maximum = 10
     }
-
+    # TODO: add and/or http queue lenght rule
     rule {
       metric_trigger {
         metric_name        = "CpuPercentage"
@@ -182,5 +187,4 @@ resource "azurerm_monitor_autoscale_setting" "blog" {
       send_to_subscription_co_administrator = true
     }
   }
-  depends_on = [azurerm_service_plan.blog]
 }

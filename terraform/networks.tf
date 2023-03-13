@@ -1,12 +1,4 @@
 # Manages the Virtual Network
-# Generate random value for the name
-resource "random_string" "private_dns_suffix" {
-  length  = 3
-  lower   = true
-  numeric = false
-  special = false
-  upper   = false
-}
 
 resource "azurerm_virtual_network" "blog" {
   address_space       = ["10.0.0.0/16"]
@@ -25,7 +17,10 @@ resource "azurerm_subnet" "blog" {
   name                 = "subnet-${var.app_name}-${var.environment}"
   resource_group_name  = azurerm_resource_group.blog.name
   virtual_network_name = azurerm_virtual_network.blog.name
-  service_endpoints    = ["Microsoft.Storage"]
+  service_endpoints    = [
+    "Microsoft.Storage", "Microsoft.Sql", "Microsoft.ContainerRegistry",
+    "Microsoft.Web", "Microsoft.KeyVault"
+    ]
 
   delegation {
     name = "fs"

@@ -1,23 +1,10 @@
-# variable tfstate_storage_account_name {
-#     description = "Name of the storage acount for terraform state storage"
-# }
-
-# variable tfstate_container_name {
-#     description = "Name of the container within storage acount for terraform state storage"
-# }
-
-# variable tfstate_resource_group_name {
-#     description = "Name of the resource group for terraform state storage"
-# }
+variable "control_host_pub_ip" {
+}
 
 ##
 variable app_name {
     description = "Application name"
 }
-
-# variable namespace {
-#     description = "The namespace in which the resources are deployed such as dev, qa, prod"
-# }
 
 variable location {
     description = "The location in which the resources are deployed such as east US, west Europe"
@@ -26,17 +13,6 @@ variable location {
 variable "replication_location" {
 }
 
-# variable storage_account_tier {
-#     description = "Stoarge Account Tier"
-# }
-
-# variable account_replication_type {
-#     description = "Stoarge Account Replication Type"
-# }
-
-# variable storage_account_name {
-#     description = "Name of the storage acount"
-# }
 
 variable environment {
     description = "The environment in which the resources are deployed such as dev, qa, prod"
@@ -87,14 +63,6 @@ variable mysql_server_maintenance_window {
     type = map
     default = {}
 }
-
-
-### app
-# variable ghost_container_image {
-# }
-
-# variable container_app_custom_domain_hostname {
-# }
 
 variable service_plan_sku_name {
     description = "Azure service SKU plan name"

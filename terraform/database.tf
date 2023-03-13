@@ -53,10 +53,11 @@ resource "azurerm_mysql_flexible_database" "blog" {
 }
 
 resource "azurerm_mysql_flexible_server_firewall_rule" "blog" {
+  # TODO: think about providing solution to omit -target=
   for_each = toset(azurerm_linux_web_app.blog.outbound_ip_address_list)
   name                = "mysqlfl-fw-rule-${var.app_name}-${var.environment}"
   resource_group_name = azurerm_mysql_flexible_server.blog.resource_group_name
   server_name         = azurerm_mysql_flexible_server.blog.name
-  start_ip_address    = each.key # TODO: put specific address
+  start_ip_address    = each.key 
   end_ip_address      = each.key # TODO: put specific address
 }

@@ -1,3 +1,3 @@
-export TF_VAR_tfstate_resource_group_name="rg-mydemo-shared-002"
+export TF_VAR_tfstate_resource_group_name="rg-mydemo-shared"
 export TF_VAR_tfstate_container_name="tfstate"
-export TF_VAR_tfstate_storage_account_name="stmydemoshared002"
+export TF_VAR_tfstate_storage_account_name="stmydemoshared12001232"

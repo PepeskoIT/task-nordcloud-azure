@@ -9,3 +9,13 @@ resource "azurerm_resource_group" "blog" {
 
   }
 }
+
+resource "azurerm_resource_group" "delete_posts" {
+  name     = "rg-${var.app_name}-function-${var.environment}"
+  location = var.location
+  tags = {
+    environment = var.environment
+    app_name = var.app_name
+
+  }
+}

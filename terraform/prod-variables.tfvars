@@ -11,7 +11,7 @@ mysql_server_auto_grow_enabled = true
 mysql_server_geo_redundand = true
 mysql_server_high_availability = {
     mode = "SameZone"
-    standby_availability_zone = 2
+    standby_availability_zone = 1
 }
 mysql_server_backup_retention_days = 7
 mysql_server_maintenance_window = {

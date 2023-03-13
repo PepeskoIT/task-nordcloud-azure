@@ -1,4 +1,5 @@
-# TODO: finish firewall and health-probe settings
+# TODO: finish firewall and health-probe config, consider custom domain settings
+# Configure switch-over for both function and web app
 resource "azurerm_dns_zone" "blog" {
   name                = "sub-domain.someexamplename.com"
   resource_group_name = azurerm_resource_group.blog.name
